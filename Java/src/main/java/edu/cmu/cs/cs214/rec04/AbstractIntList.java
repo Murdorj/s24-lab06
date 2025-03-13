@@ -2,73 +2,68 @@ package edu.cmu.cs.cs214.rec04;
 
 /**
  * AbstractIntList -- a list of integers.
+ * Provides a skeletal implementation of the IntegerList interface.
+ * This class allows subclasses to implement the core functionalities
+ * while reusing common logic for handling list operations.
  *
  * @author Nora Shoemaker
- *
  */
 public abstract class AbstractIntList implements IntegerList {
 
     /**
-     * Adds the specified int to the list.
+     * Adds the specified integer to the list.
      *
-     * @param num an integer to be added to the list
-     * @return true if the list is changed as a result of the call
+     * @param num the integer to be added
+     * @return true if the list is modified
      */
     public abstract boolean add(int num);
 
     /**
-     * Adds all of the elements of the IntegerList to the list.
-     * Calls add() on each element of list. Can be overwritten
-     * for more specific behavior.
+     * Adds all elements from the provided IntegerList to this list.
+     * Iterates over the list and calls add() on each element.
+     * Can be overridden by subclasses for optimized behavior.
      *
-     * @param list IntegerList containing elements to be added to the list
-     * @return true if the list changed as a result of the call
+     * @param list IntegerList containing elements to be added
+     * @return true if the list changed as a result
      */
     public boolean addAll(IntegerList list) {
-
         boolean success = false;
-
-        for (int i = 0; i < list.size(); i++)
-        {
+        for (int i = 0; i < list.size(); i++) {
             success |= this.add(list.get(i));
         }
-
         return success;
     }
 
     /**
-     * Returns the integer at the specified position in this list.
+     * Retrieves the integer at the specified index.
      *
-     * @param index index of the element to return
-     * @return the element at the specified position in this list
+     * @param index the position of the element
+     * @return the integer at the specified position
      */
     public abstract int get(int index);
 
     /**
-     * Removes the first occurrence of the specified element from the list,
-     * if it is present (optional operation).
+     * Removes the first occurrence of the specified integer.
      *
-     * @param num an integer to be removed from the list, if present
-     * @return true if an element was removed as a result of this call
+     * @param num the integer to remove
+     * @return true if the element was successfully removed
      */
     public abstract boolean remove(int num);
 
     /**
-     * Removes from the list all of its elements that are contained in the
-     * specified IntegerList.
+     * Removes all elements present in the provided IntegerList from this list.
      *
-     * @param list IntegerList containing elements to be removed from
-     * the list
-     * @return true if the list changed as a result of the call
+     * @param list IntegerList containing elements to be removed
+     * @return true if the list changed as a result
      */
     public abstract boolean removeAll(IntegerList list);
 
     /**
-     * Returns the number of elements in this list. If this list contains
-     * more than Integer.MAX_VALUE elements, returns Integer.MAX_VALUE.
+     * Returns the number of elements in the list.
+     * If the list contains more than Integer.MAX_VALUE elements,
+     * it should return Integer.MAX_VALUE.
      *
-     * @return number of elements in the list
+     * @return the size of the list
      */
     public abstract int size();
-
 }
